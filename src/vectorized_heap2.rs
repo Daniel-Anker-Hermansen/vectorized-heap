@@ -135,6 +135,10 @@ impl VectorizedHeap {
         let b = self.key(j);
         self.reverse.swap(a, b);
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
 }
 
 const INDICES: [u32; LANES] = {
