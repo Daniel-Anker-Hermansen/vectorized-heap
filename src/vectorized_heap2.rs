@@ -147,8 +147,6 @@ const INDICES: [u32; LANES] = {
     indices
 };
 
-#[inline(never)]
-#[no_mangle]
 fn min_index(arr: [f32; LANES]) -> usize {
     let a_values: Simd<f32, 8> = Simd::from_slice(&arr[..8]);
     let a_indices: Simd<u32, 8> = Simd::from_slice(&INDICES[..8]);
