@@ -1,4 +1,4 @@
-use std::simd::SimdPartialOrd;
+use std::simd::cmp::SimdPartialOrd;
 
 pub struct VectorizedHeap {
     data: Vec<f32>,

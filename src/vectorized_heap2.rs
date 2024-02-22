@@ -1,4 +1,4 @@
-use std::simd::{SimdPartialOrd, Simd, SimdFloat, SimdInt, simd_swizzle};
+use std::simd::{cmp::SimdPartialOrd, num::{SimdFloat, SimdInt}, simd_swizzle, Simd};
 
 pub struct VectorizedHeap {
     data: Vec<Group>,
