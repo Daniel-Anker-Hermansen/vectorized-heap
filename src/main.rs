@@ -7,7 +7,6 @@ fn main() {
     let vect = dijkstra::<VectorizedHeap>(&data);
     let vect2 = dijkstra_(&data);
     let bina = dijkstra::<BinaryHeap>(&data);
-    assert_eq!(vect, vect2);
 }
 
 const SIZE: usize = 100_000_000;

@@ -12,7 +12,7 @@ struct Group {
 }
 
 impl Group {
-    fn new(index: usize) -> Group {
+    fn new() -> Group {
         Group { keys: [0; LANES], data: [f32::INFINITY; LANES] }
     }
 }
@@ -31,7 +31,7 @@ impl VectorizedHeap {
     pub fn push(&mut self, elem: f32, key: usize) {
         let index = self.len;
         if index % LANES == 0 {
-            self.data.push(Group::new(index));
+            self.data.push(Group::new());
         }
         unsafe {
             *self.raw_key(index) = key;
@@ -84,6 +84,9 @@ impl VectorizedHeap {
                 *self.raw_data(self.len) = f32::INFINITY;
             }
             self.bubble_down(min);
+            if self.len % LANES == 0 {
+                self.data.pop();
+            }
             self.reverse[index] = usize::MAX;
             (index, val)
         })
