@@ -1,4 +1,11 @@
+use std::iter::repeat_with;
+
 use heaps::{heap::Heap, vectorized_heap::VectorizedHeap, binary_heap::BinaryHeap};
+use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
+
+fn f(i: &i32) -> i32 {
+    (i * 74) % i
+}
 
 fn main() {
     //bench::<VectorizedHeap>();
@@ -7,6 +14,7 @@ fn main() {
     let vect = dijkstra::<VectorizedHeap>(&data);
     let vect2 = dijkstra_(&data);
     let bina = dijkstra::<BinaryHeap>(&data);
+    assert_eq!(vect2, bina);
 }
 
 const SIZE: usize = 100_000_000;
